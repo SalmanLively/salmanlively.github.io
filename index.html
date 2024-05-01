@@ -58,6 +58,11 @@
       border-radius: 5px;
       background-color: #fff;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: none; /* All content initially hidden */
+    }
+
+    .content.active {
+      display: block;
     }
   </style>
 </head>
@@ -86,16 +91,19 @@
       link.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const activeTab = document.querySelector('.nav-link.active');
-        activeTab.classList.remove('active');
+        // Target content section by ID directly
+        const targetSection = document.getElementById(link.getAttribute('href').slice(1));
 
-        link.classList.add('active');
-
+        // Remove active class from all content sections
         const contentSections = document.querySelectorAll('.content');
         contentSections.forEach(section => section.classList.remove('active'));
 
-        const targetSection = document.getElementById(link.getAttribute('href').slice(1));
+        // Add active class to the target content section
         targetSection.classList.add('active');
+
+        // Removed redundant code to remove active class from nav links
+
+        // No need to set active class on clicked link as styles handle it already
       });
     });
   </script>
