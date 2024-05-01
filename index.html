@@ -9,73 +9,91 @@
       font-family: sans-serif;
       margin: 0;
       padding: 0;
-    }
-
-    .tabs {
       display: flex;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .tab-link {
-      padding: 10px 20px;
-      border-right: 1px solid #ddd;
-      cursor: pointer;
-      text-decoration: none;
-      color: #333;
-    }
-
-    .tab-link.active {
+      min-height: 100vh;
       background-color: #f5f5f5;
     }
 
-    .tab-content {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 20px;
-      display: none;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    .tab-content.active {
-      display: block;
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .nav-link {
+      color: #333;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link.active {
+      background-color: #ddd;
+    }
+
+    .nav-link:hover {
+      background-color: #eee;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
-  <header>
+  <div class="container">
     <h1>Salman Shaikat</h1>
-  </header>
-  <div class="tabs">
-    <a href="#home" class="tab-link active">Home</a>
-    <a href="#recent-work" class="tab-link">Recent Work</a>
-    <a href="#contact" class="tab-link">Contact</a>
-  </div>
-  <div id="home" class="tab-content active">
-    <p>I'm a passionate web developer with a focus on building clean and functional websites. I'm currently available for freelance projects.</p>
-  </div>
-  <div id="recent-work" class="tab-content">
-    <p>This is the Recent Work section. Add your project details here.</p>
-  </div>
-  <div id="contact" class="tab-content">
-    <p>Get in touch! Add your contact information here.</p>
+    <nav>
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#recent-work" class="nav-link">Recent Work</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div id="home" class="content active">
+      <p>I'm a passionate web developer with a focus on building clean and functional websites. I'm currently available for freelance projects.</p>
+    </div>
+    <div id="recent-work" class="content">
+      <p>This is the Recent Work section. Add your project details here.</p>
+    </div>
+    <div id="contact" class="content">
+      <p>Get in touch! Add your contact information here.</p>
+    </div>
   </div>
   <script>
-    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabLinks = document.querySelectorAll('.nav-link');
 
     tabLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        // Prevent default anchor tag behavior
         e.preventDefault();
 
-        // Remove active class from all tabs
-        const activeTab = document.querySelector('.tab-link.active');
+        const activeTab = document.querySelector('.nav-link.active');
         activeTab.classList.remove('active');
 
-        // Add active class to clicked tab
         link.classList.add('active');
 
-        // Hide all content sections
-        const contentSections = document.querySelectorAll('.tab-content');
+        const contentSections = document.querySelectorAll('.content');
         contentSections.forEach(section => section.classList.remove('active'));
 
-        // Show content section corresponding to clicked tab
         const targetSection = document.getElementById(link.getAttribute('href').slice(1));
         targetSection.classList.add('active');
       });
