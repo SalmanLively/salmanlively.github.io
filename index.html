@@ -9,75 +9,77 @@
       font-family: sans-serif;
       margin: 0;
       padding: 0;
+    }
+
+    .tabs {
       display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background-color: #f5f5f5;
+      border-bottom: 1px solid #ddd;
     }
 
-    header {
-      padding: 20px;
-      text-align: center;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      margin-bottom: 5px;
-      font-size: 2em;
-    }
-
-    p {
-      font-size: 16px;
+    .tab-link {
+      padding: 10px 20px;
+      border-right: 1px solid #ddd;
+      cursor: pointer;
+      text-decoration: none;
       color: #333;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 50px;
+    .tab-link.active {
+      background-color: #f5f5f5;
     }
 
-    .contact-button {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+    .tab-content {
+      padding: 20px;
+      display: none;
     }
 
-    .contact-button:hover {
-      background-color: #222;
+    .tab-content.active {
+      display: block;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Salman Shaikat</h1>
-    <p>Web Developer | Freelancer</p>
   </header>
-  <main>
+  <div class="tabs">
+    <a href="#home" class="tab-link active">Home</a>
+    <a href="#recent-work" class="tab-link">Recent Work</a>
+    <a href="#contact" class="tab-link">Contact</a>
+  </div>
+  <div id="home" class="tab-content active">
     <p>I'm a passionate web developer with a focus on building clean and functional websites. I'm currently available for freelance projects.</p>
-    <a href="#" class="contact-button">Contact Me</a>
-  </main>
-
-
-  
-  
+  </div>
+  <div id="recent-work" class="tab-content">
+    <p>This is the Recent Work section. Add your project details here.</p>
+  </div>
+  <div id="contact" class="tab-content">
+    <p>Get in touch! Add your contact information here.</p>
+  </div>
   <script>
-    // Simple example to add a click effect on the contact button (can be replaced with your contact form functionality)
-    const contactButton = document.querySelector('.contact-button');
+    const tabLinks = document.querySelectorAll('.tab-link');
 
-    contactButton.addEventListener('click', () => {
-      alert('Thank you for your interest! This is a placeholder for the contact form.');
+    tabLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Prevent default anchor tag behavior
+        e.preventDefault();
+
+        // Remove active class from all tabs
+        const activeTab = document.querySelector('.tab-link.active');
+        activeTab.classList.remove('active');
+
+        // Add active class to clicked tab
+        link.classList.add('active');
+
+        // Hide all content sections
+        const contentSections = document.querySelectorAll('.tab-content');
+        contentSections.forEach(section => section.classList.remove('active'));
+
+        // Show content section corresponding to clicked tab
+        const targetSection = document.getElementById(link.getAttribute('href').slice(1));
+        targetSection.classList.add('active');
+      });
     });
   </script>
-
-  
 </body>
 </html>
