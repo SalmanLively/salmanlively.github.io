@@ -1,0 +1,92 @@
+:root {
+    --pbg : 10, 29, 55;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: #293b5f;
+    padding: 1.5rem 5vw;
+    box-sizing: border-box;
+}
+
+#app {
+    background: rgba(var(--pbg));
+    border-radius: 0.5rem;
+    max-width: 1000px;
+    margin: auto;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template: auto 1fr / repeat(20, 1fr) ;
+}
+#app > header {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    background: #031631;
+}
+
+header > span {
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+header > :nth-child(1) {
+    background: #99154e;
+}
+header > :nth-child(2) {
+    background: #005792;
+}
+header > :nth-child(3) {
+    background: #cca031;
+}
+
+#app > aside {
+    grid-column: 1 / span 4;
+    background: #061933;
+    user-select: none;
+}
+#app > main {
+    grid-column: 5 / -1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+aside .nav-item {
+    padding: 0.5rem 1rem;
+    /* background: #081830; */
+    color: #8d99aa;
+}
+aside .nav-item:hover {
+    background: rgba(var(--pbg), 0.6);
+}
+aside .nav-item.active {
+    background: rgba(var(--pbg), 1);
+    color: #757d8b;
+}
+
+
+
+/* width */
+main::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+/* Track */
+main::-webkit-scrollbar-track {
+    /* background: #082449; */
+    border-left: 1px solid #132d50;
+}
+
+/* Handle */
+main::-webkit-scrollbar-thumb {
+    background: #0e33645b;
+}
+
+/* Handle on hover */
+main::-webkit-scrollbar-thumb:hover {
+    background: #0e336483;
+}
